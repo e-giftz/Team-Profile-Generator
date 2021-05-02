@@ -1,0 +1,26 @@
+{
+  "name": "my-team-profile-generator",
+  "version": "1.0.0",
+  "description": "A Node.js command-line application that generates an HTML webpage from the user input received",
+  "main": "index.js",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "inquirer": "^8.0.0",
+    "jest": "^26.6.3",
+    "util": "^0.12.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e-giftz/Team-Profile-Generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/e-giftz/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/e-giftz/Team-Profile-Generator#readme"
+}
