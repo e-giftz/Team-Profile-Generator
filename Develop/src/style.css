@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: lightslategray;
+    --secondary: white;
+}
+  
+body {
+    font-family: Arial;
+}
+
+#navbar {
+    font-size: 50px;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.container {
+    margin: 100px auto;
+   
+}
+
+
