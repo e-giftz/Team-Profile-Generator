@@ -11,9 +11,6 @@ const fs = require('fs');
 
 const teamEmployees = [];
 
-// create writeFile function using promises instead of a callback function
-//const writeFileAsync = util.promisify(fs.writeFile);
-
 
 const managerPrompt = () => {
   return new Promise((res) => {
@@ -97,11 +94,11 @@ const addNewEmployee = () => {
       },
       {
         type: 'input',
-        name: 'engineerName',
-        message: 'What is the engineer;s name?: ',
+        name: 'name',
+        message: "What is the engineer's name?: ",
         when: ({role}) => role === "Engineer",
-        validate: engineerName => {
-          if (engineerName) {
+        validate: username => {
+          if (username) {
             return true;
           } else {
             console.log('Please enter a valid name for the Engineer: ');
@@ -111,21 +108,17 @@ const addNewEmployee = () => {
       },
       {
         type: 'input',
-        name: 'engineerId',
+        name: 'id',
         message: 'Please enter an employee ID for the engineer: ',
-        when: ({role}) => role === "Engineer",
-        validate: engineerId => {
-          if (engineerId) {
-            return true;
-          } else {
-            console.log('Please enter the employee ID for the Engineer: ');
-            return false;
-          }
+        when: ({ role }) => role === "Engineer",
+        validate: function (value) {
+          const valid = !isNaN(parseInt(value));
+          return valid || "Please enter a valid employee ID for the engineer";
         }
       },
       {
         type: 'input',
-        name: 'engineerEmail',
+        name: 'email',
         message: 'What is the email for the Engineer?',
         when: ({role}) => role === "Engineer",
         validate: function (email) {
@@ -146,11 +139,11 @@ const addNewEmployee = () => {
       },
       {
         type: 'input',
-        name: 'nameIntern',
+        name: 'name',
         message: "What is the Intern's name?: ",
         when: ({role}) => role === "Intern",
-        validate: nameIntern => {
-          if (nameIntern) {
+        validate: username => {
+          if (username) {
             return true;
           } else {
             console.log('Please enter a valid name for the Intern: ');
@@ -160,22 +153,18 @@ const addNewEmployee = () => {
       },
       {
         type: 'input',
-        name: 'internId',
+        name: 'id',
         message: 'Please enter an employee ID for the intern: ',
-        when: ({role}) => role === "Intern",
-        validate: internId => {
-          if (internId) {
-            return true;
-          } else {
-            console.log('Please enter the employee ID for the Intern: ');
-            return false;
-          }
+        when: ({ role }) => role === "Intern",
+        validate: function (value) {
+          const valid = !isNaN(parseInt(value));
+          return valid || "Please enter a valid employee number";
         }
       },
       {
         type: 'input',
-        name: 'emailIntern',
-        message: 'What is the email for the Engineer?',
+        name: 'email',
+        message: 'What is the email for the Intern?',
         when: ({role}) => role === "Intern",
         validate: function (email) {
           const valid = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(email);
@@ -192,14 +181,7 @@ const addNewEmployee = () => {
         name: 'school',
         when: ({role}) => role === "Intern",
         message: 'Please enter the school name for the Intern: '
-      },
-      {
-        type: 'confirm',
-        name: 'confirmEmployee',
-        message: 'Do you want to add more team members?: ',
-        default: false
       }
-
     ])
     .then(answers => {
       if (answers.role) {
@@ -214,7 +196,8 @@ const addNewEmployee = () => {
             break;
 
         }
-        return addNewEmployee().then(()  => resolve());
+        return addNewEmployee().then(() => resolve());
+        
       } else {
         return resolve();
       }
@@ -223,7 +206,7 @@ const addNewEmployee = () => {
 }
 
 const writeFile = data => {
-  fs.writeFile('./dist/index.html', data, err => {
+  fs.writeFile('./Develop/dist/index.html', data, err => {
     if (err) {
       console.log(err);
       return;
@@ -234,14 +217,13 @@ const writeFile = data => {
 }
 
 managerPrompt()
-.then(addNewEmployee)
-.then(teamEmployees => {
-  return generateHTML(teamEmployees);
-}) 
-.then(renderHTML => {
-  return writeFile(renderHTML);
+.then(() => {
+  return addNewEmployee();
 })
-.catch(err => {
+.then(() => {
+  const renderHTML = generateHTML(teamEmployees);
+  writeFile(renderHTML);
+})
+.catch((err) => {
   console.log(err);
-});
-
+})
