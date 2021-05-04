@@ -50,7 +50,7 @@ const managerPrompt = () => {
           if (valid) {
             return true;
           } else {
-            console.log('Please enter an email: ');
+            console.log(' Please enter an email: ');
             return false;
           }
         }

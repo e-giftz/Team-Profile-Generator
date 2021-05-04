@@ -23,6 +23,7 @@ On the newly generated webpage, when the user clicks on an email address, then t
 * URL of GitHub repository containing the code: https://github.com/e-giftz/Team-Profile-Generator
 
 ## Video of the User Flow through the App
-The video walkthrough  of the app can be found [here](/Develop/assets/README-app-display.mp4)
+The video walkthrough  of the Team Profile app can be found [here](/Develop/assets/Team-profile-walkthrough.mp4)
+The contd video showing the unit tests running can be found [here](/Develop/assets/Team-profile-test-walkthrough.mp4)
 
-![App Walkthrough ](/Develop/assets/README-app-walkthrough.gif)
+![Team Profile Webpage Display ](/Develop/assets/Team-profile-webpage.png)
