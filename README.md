@@ -2,7 +2,7 @@
 A Node.js command-line application that generates an HTML webpage from the user input received
 
 ## Description
-This is a Node.js application that takes in user information about employees on a softawre engineering team and then quickly and easily generates an HTML webpage that displays the summaries for each person using the inquirer package. 
+This is a Node.js application that takes in user information about employees on a softawre engineering team and then quickly and easily generates an HTML webpage that displays the summaries for each person using the jest and inquirer package. 
 The code provides a clean, polished and interactive CLI that prompts the user for information and uses these data to generate the data on the html webpage. 
 Also, as part of making the code maintainable, the unit tests for the various functions of the code was generated and run and passed successfully.
 
